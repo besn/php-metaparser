@@ -19,9 +19,9 @@
       "FeedParser/Plugin/Plugin.php",
       "FeedParser/Plugin/DC.php",
       "FeedParser/Plugin/SY.php",
-      "FeedParser/FeedBase.php",
-      "FeedParser/FeedChannel.php",
-      "FeedParser/FeedItem.php"
+      "FeedParser/Base.php",
+      "FeedParser/Channel.php",
+      "FeedParser/Item.php"
     ]
   }
 }
