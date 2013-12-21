@@ -30,7 +30,6 @@ class Base
    */
   function processMetaData($meta_namespace, $meta_key, $meta_value)
   {
-    // syslog(LOG_DEBUG, sprintf('feed: %s, type: %s, ns: %s, key: %s, value: %s', $this->type, $this->meta_type, $meta_namespace, $meta_key, $meta_value));
     switch ((string)$this->meta_type) {
       case 'channel':
         switch ((string)$meta_namespace) {
