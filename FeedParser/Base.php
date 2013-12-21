@@ -54,7 +54,7 @@ class Base
                     $this->$meta_key = html_entity_decode((string)$meta_value);
                     break;
 
-                  case 'pubDate': // Defines the last publication date for the content of the feed (optional)
+                  case 'pubdate': // Defines the last publication date for the content of the feed (optional)
                     $this->time = new \DateTime((string)$meta_value);
                     $this->time->setTimezone(new \DateTimeZone('UTC'));
                     break;
@@ -123,7 +123,7 @@ class Base
                     $this->$meta_key = html_entity_decode((string)$meta_value);
                     break;
 
-                  case 'pubDate':
+                  case 'pubdate':
                     $this->time = new \DateTime((string)$meta_value);
                     $this->time->setTimezone(new \DateTimeZone('UTC'));
                     break;
