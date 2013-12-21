@@ -15,7 +15,7 @@
   "autoload": {
     "classmap": [
       "FeedParser/FeedParser.php",
-      "FeedParser/FeedPlugin.php",
+      "FeedParser/Plugin/Plugin.php",
       "FeedParser/Plugin/DC.php",
       "FeedParser/Plugin/SY.php",
       "FeedParser/FeedBase.php",
