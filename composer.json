@@ -1,0 +1,20 @@
+{
+  "name": "metaverse/feedparser",
+  "type": "library",
+  "description": "metaverse PHP FeedParser library",
+  "keywords": ["rss", "atom"],
+  "authors": [
+    {
+      "name": "Andi Mery",
+      "email": "besn@besn.at"
+    }
+  ],
+  "require": {
+    "php": ">=5.3"
+  },
+  "autoload": {
+    "classmap": [
+      "lib/autoload.php"
+    ]
+  }
+}
