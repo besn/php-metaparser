@@ -64,7 +64,7 @@ class FeedChannel extends \FeedParser\FeedBase
 
     // go through the list of used namespaces
     foreach ($namespaces as $ns => $ns_uri) {
-      if (isset(\FeedParser\FeedParser::$plugins[$ns])) {
+      if (isset(\FeedParser\FeedParser::$plugins[$ns]) && \FeedParser\FeedParser::$plugins[$ns] instanceof \FeedParser\Plugin\Plugin) {
         if (count($feed->children($ns, true)) > 0) {
           foreach ($feed->children($ns, true) as $meta_key => $meta_value) {
             \FeedParser\FeedParser::$plugins[$ns]->processMetaData($this, $ns, $meta_key, $meta_value);
