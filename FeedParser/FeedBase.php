@@ -36,14 +36,21 @@ class FeedBase
         switch ((string)$meta_namespace) {
           case '':
             switch ($this->feed_type) {
-              case FEEDPARSER_TYPE_RSS_20:
+              case FEEDPARSER_TYPE_RDF:
                 switch ((string)$meta_key) {
                   case 'title': // Defines the title of the channel (required)
+                  case 'link': // Defines the hyperlink to the channel (required)
                   case 'description': // Describes the channel (required)
                     $this->$meta_key = html_entity_decode((string)$meta_value);
                     break;
+                }
+                break;
 
+              case FEEDPARSER_TYPE_RSS:
+                switch ((string)$meta_key) {
+                  case 'title': // Defines the title of the channel (required)
                   case 'link': // Defines the hyperlink to the channel (required)
+                  case 'description': // Describes the channel (required)
                     $this->$meta_key = html_entity_decode((string)$meta_value);
                     break;
 
@@ -60,7 +67,7 @@ class FeedBase
                 }
                 break;
 
-              case FEEDPARSER_TYPE_ATOM_10:
+              case FEEDPARSER_TYPE_ATOM:
                 switch ((string)$meta_key) {
                   case 'title': // Defines the title of the channel (required)
                     $this->$meta_key = html_entity_decode((string)$meta_value);
@@ -97,7 +104,17 @@ class FeedBase
         switch ((string)$meta_namespace) {
           case '':
             switch ($this->feed_type) {
-              case FEEDPARSER_TYPE_RSS_20:
+              case FEEDPARSER_TYPE_RDF:
+                switch ((string)$meta_key) {
+                  case 'title': // Defines the title of the item (required)
+                  case 'link': // Defines the hyperlink to the item (required)
+                  case 'description': // Describes the item (required)
+                    $this->$meta_key = html_entity_decode((string)$meta_value);
+                    break;
+                }
+                break;
+
+              case FEEDPARSER_TYPE_RSS:
                 switch ((string)$meta_key) {
                   case 'title': // Defines the title of the item (required)
                   case 'link': // Defines the hyperlink to the item (required)
@@ -113,7 +130,7 @@ class FeedBase
                 }
                 break;
 
-              case FEEDPARSER_TYPE_ATOM_10:
+              case FEEDPARSER_TYPE_ATOM:
                 switch ((string)$meta_key) {
                   case 'title': // Defines the title of the item (required)
                     $this->$meta_key = html_entity_decode((string)$meta_value);

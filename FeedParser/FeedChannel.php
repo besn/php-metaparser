@@ -31,13 +31,19 @@ class FeedChannel extends \FeedParser\FeedBase
     $items_key = null;
 
     switch ($this->feed_type) {
-      case FEEDPARSER_TYPE_RSS_20:
+      case FEEDPARSER_TYPE_RDF:
+        $feed = $x->channel;
+        $items = $x->item;
+        $items_key = 'item';
+        break;
+
+      case FEEDPARSER_TYPE_RSS:
         $feed = $x->channel;
         $items = $x->channel->item;
         $items_key = 'item';
         break;
 
-      case FEEDPARSER_TYPE_ATOM_10:
+      case FEEDPARSER_TYPE_ATOM:
         $feed = $x;
         $items = $x->entry;
         $items_key = 'entry';
@@ -70,20 +76,6 @@ class FeedChannel extends \FeedParser\FeedBase
       unset($ns, $ns_uri);
     }
 
-    /*
-        foreach($namespaces as $ns => $ns_uri) {
-          syslog(LOG_DEBUG, var_export($ns, true));
-          syslog(LOG_DEBUG, var_export($ns_uri, true));
-
-          if (count($feed->children($ns, true)) > 0) {
-            foreach ($feed->children($ns, true) as $meta_key => $meta_value) {
-              syslog(LOG_DEBUG, sprintf('%s = %s', $meta_key, $meta_value));
-              unset($meta_key, $meta_value);
-            }
-          }
-        }
-    */
-
     // extract item data
     foreach ($items as $i) {
       $this->addItem(new \FeedParser\FeedItem($this->feed_type, $i));
@@ -99,18 +91,17 @@ class FeedChannel extends \FeedParser\FeedBase
    */
   public function getFeedType(\SimpleXMLElement $x)
   {
-    // extract channel data
-    switch ($x->getName()) {
+    switch (strtolower($x->getName())) {
+      case 'rdf':
+        return FEEDPARSER_TYPE_RDF;
+        break;
+
       case 'rss':
-        switch (isset($x['version'])) {
-          case '2.0':
-            return FEEDPARSER_TYPE_RSS_20;
-            break;
-        }
+        return FEEDPARSER_TYPE_RSS;
         break;
 
       case 'feed':
-        return FEEDPARSER_TYPE_ATOM_10;
+        return FEEDPARSER_TYPE_ATOM;
         break;
 
       default:

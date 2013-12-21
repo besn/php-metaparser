@@ -10,10 +10,12 @@ namespace FeedParser;
 
 // Unknown feed type
 define('FEEDPARSER_TYPE_UNKNOWN', 0);
+// RDF
+define('FEEDPARSER_TYPE_RDF', 1);
 // RSS 2.0
-define('FEEDPARSER_TYPE_RSS_20', 1);
+define('FEEDPARSER_TYPE_RSS', 2);
 // ATOM 1.0
-define('FEEDPARSER_TYPE_ATOM_10', 2);
+define('FEEDPARSER_TYPE_ATOM', 3);
 
 /**
  * Parses a RSS or Atom Feed
