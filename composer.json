@@ -1,6 +1,7 @@
 {
   "name": "metaverse/feedparser",
   "type": "library",
+  "license": "proprietary",
   "description": "metaverse PHP FeedParser library",
   "keywords": ["rss", "atom"],
   "authors": [
