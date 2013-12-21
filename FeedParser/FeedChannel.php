@@ -20,9 +20,6 @@ class FeedChannel extends \FeedParser\FeedBase
    */
   public function __construct(\SimpleXMLElement $x)
   {
-    // define a default feed updated time
-    $this->time = new \DateTime();
-
     $this->feed_type = $this->getFeedType($x);
     $this->meta_type = 'channel';
 

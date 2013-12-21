@@ -18,7 +18,6 @@ class FeedItem extends \FeedParser\FeedBase
    */
   public function __construct($item_type, \SimpleXMLElement $i)
   {
-    $this->time = new \DateTime();
     $this->feed_type = $item_type;
     $this->meta_type = 'item';
 
