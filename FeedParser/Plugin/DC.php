@@ -26,6 +26,10 @@ class DC extends \FeedParser\Plugin\Plugin
       case 'title': // Title by which the resource is known.
         $feedbase->title = (string)$meta_value;
         break;
+      case 'date': // Defines the publication date for the resource.
+        $feedbase->time = new \DateTime((string)$meta_value);
+        $feedbase->time->setTimezone(new \DateTimeZone('UTC'));
+        break;
     }
   }
 
