@@ -40,6 +40,7 @@ class FeedParser
     // initialize plugins
     self::$plugins['dc'] = new \FeedParser\Plugin\DC();
     self::$plugins['sy'] = new \FeedParser\Plugin\SY();
+    self::$plugins['content'] = new \FeedParser\Plugin\Content();
 
     $this->channel = new \FeedParser\Feed($x);
   }
