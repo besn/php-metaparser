@@ -20,7 +20,7 @@
       "FeedParser/Plugin/DC.php",
       "FeedParser/Plugin/SY.php",
       "FeedParser/Base.php",
-      "FeedParser/Channel.php",
+      "FeedParser/Feed.php",
       "FeedParser/Item.php"
     ]
   }
