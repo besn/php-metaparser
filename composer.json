@@ -14,14 +14,8 @@
     "php": ">=5.3.0"
   },
   "autoload": {
-    "classmap": [
-      "FeedParser/FeedParser.php",
-      "FeedParser/Plugin/Plugin.php",
-      "FeedParser/Plugin/DC.php",
-      "FeedParser/Plugin/SY.php",
-      "FeedParser/Base.php",
-      "FeedParser/Feed.php",
-      "FeedParser/Item.php"
-    ]
+    "psr-0": {
+      "FeedParser\\": "FeedParser/"
+    }
   }
 }
