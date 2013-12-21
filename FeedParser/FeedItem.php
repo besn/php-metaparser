@@ -29,21 +29,21 @@ class FeedItem extends \FeedParser\FeedBase
       }
     }
 
-        // get the namespaces used in the item
-        $namespaces = $i->getNamespaces(true);
+    // get the namespaces used in the item
+    $namespaces = $i->getNamespaces(true);
 
-        // go through the list of used namespaces
-        foreach($namespaces as $ns => $ns_uri) {
-          if(isset(\FeedParser\FeedParser::$plugins[$ns])) {
-            if (count($i->children($ns, true)) > 0) {
-              foreach ($i->children($ns, true) as $meta_key => $meta_value) {
-                \FeedParser\FeedParser::$plugins[$ns]->processMetaData($this, $ns, $meta_key, $meta_value);
-                unset($meta_key, $meta_value);
-              }
-            }
-            \FeedParser\FeedParser::$plugins[$ns]->applyMetaData($this);
+    // go through the list of used namespaces
+    foreach ($namespaces as $ns => $ns_uri) {
+      if (isset(\FeedParser\FeedParser::$plugins[$ns])) {
+        if (count($i->children($ns, true)) > 0) {
+          foreach ($i->children($ns, true) as $meta_key => $meta_value) {
+            \FeedParser\FeedParser::$plugins[$ns]->processMetaData($this, $ns, $meta_key, $meta_value);
+            unset($meta_key, $meta_value);
           }
-          unset($ns, $ns_uri);
         }
+        \FeedParser\FeedParser::$plugins[$ns]->applyMetaData($this);
+      }
+      unset($ns, $ns_uri);
+    }
   }
 }
