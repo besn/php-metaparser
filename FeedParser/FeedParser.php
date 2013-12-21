@@ -41,6 +41,6 @@ class FeedParser
     self::$plugins['dc'] = new \FeedParser\Plugin\DC();
     self::$plugins['sy'] = new \FeedParser\Plugin\SY();
 
-    $this->channel = new \FeedParser\FeedChannel($x);
+    $this->channel = new \FeedParser\Feed($x);
   }
 }

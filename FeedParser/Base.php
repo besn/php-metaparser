@@ -9,9 +9,9 @@
 namespace FeedParser;
 
 /**
- * Class FeedBase
+ * Class Base
  */
-class FeedBase
+class Base
 {
   public $feed_type = null;
   public $meta_type = null;

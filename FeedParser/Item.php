@@ -9,9 +9,9 @@
 namespace FeedParser;
 
 /**
- * Class FeedItem
+ * Class Item
  */
-class FeedItem extends \FeedParser\FeedBase
+class Item extends \FeedParser\Base
 {
   /**
    * @param $feed_type

@@ -21,7 +21,7 @@ class SY extends \FeedParser\Plugin\Plugin
   private $updateFrequency = 0;
   private $updateBase = null;
 
-  private function processData(\FeedParser\FeedBase $feedbase, $meta_key, $meta_value)
+  private function processData(\FeedParser\Base $feedbase, $meta_key, $meta_value)
   {
     switch ((string)$meta_key) {
       case 'updatePeriod':
@@ -56,14 +56,14 @@ class SY extends \FeedParser\Plugin\Plugin
     }
   }
 
-  public function applyMetaData(\FeedParser\FeedBase $feedbase)
+  public function applyMetaData(\FeedParser\Base $feedbase)
   {
     if (isset($this->updatePeriod) && $this->updatePeriod > 0 && isset($this->updateFrequency) && $this->updateFrequency > 0) {
       $feedbase->updateFrequency = abs($this->updateFrequency * $this->updatePeriod);
     }
   }
 
-  public function processMetaData(\FeedParser\FeedBase $feedbase, $meta_namespace, $meta_key, $meta_value)
+  public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, $meta_value)
   {
     switch ((string)$feedbase->meta_type) {
       case 'channel':

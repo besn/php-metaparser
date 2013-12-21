@@ -9,9 +9,9 @@
 namespace FeedParser;
 
 /**
- * Class FeedChannel
+ * Class Feed
  */
-class FeedChannel extends \FeedParser\FeedBase
+class Feed extends \FeedParser\Base
 {
   public $items = array();
 
@@ -75,7 +75,7 @@ class FeedChannel extends \FeedParser\FeedBase
 
     // extract item data
     foreach ($items as $i) {
-      $this->addItem(new \FeedParser\FeedItem($this->feed_type, $i));
+      $this->addItem(new \FeedParser\Item($this->feed_type, $i));
     }
 
     unset($feed, $items, $items_key);
@@ -108,9 +108,9 @@ class FeedChannel extends \FeedParser\FeedBase
   }
 
   /**
-   * @param \FeedParser\FeedItem $item
+   * @param \FeedParser\Item $item
    */
-  public function addItem(\FeedParser\FeedItem $item)
+  public function addItem(\FeedParser\Item $item)
   {
     $this->items[] = $item;
   }
