@@ -26,10 +26,24 @@ define('FEEDPARSER_TYPE_ATOM', 3);
  */
 class FeedParser
 {
-  public $channel = null;
   public static $plugins = array();
 
-  public function __construct($feed_content)
+  public function __construct()
+  {
+    // initialize plugins
+    self::$plugins['dc'] = new \FeedParser\Plugin\DC();
+    self::$plugins['sy'] = new \FeedParser\Plugin\SY();
+    self::$plugins['content'] = new \FeedParser\Plugin\Content();
+  }
+
+  /**
+   * Parses a RDF, RSS or Atom feed and returns a \Feedparser\Feed object
+   *
+   * @param string $feed_content
+   * @return \FeedParser\Feed
+   * @throws \Exception
+   */
+  public function parse($feed_content)
   {
     if (!isset($feed_content))
       throw new \Exception('missing feed content');
@@ -37,11 +51,6 @@ class FeedParser
     if (!($x = simplexml_load_string($feed_content)))
       throw new \Exception('error parsing content');
 
-    // initialize plugins
-    self::$plugins['dc'] = new \FeedParser\Plugin\DC();
-    self::$plugins['sy'] = new \FeedParser\Plugin\SY();
-    self::$plugins['content'] = new \FeedParser\Plugin\Content();
-
-    $this->channel = new \FeedParser\Feed($x);
+    return new \FeedParser\Feed($x, $this);
   }
 }
