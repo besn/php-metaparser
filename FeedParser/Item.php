@@ -23,7 +23,12 @@ class Item extends \FeedParser\Base
 
     if (count($i->children()) > 0) {
       foreach ($i->children() as $meta_key => $meta_value) {
-        $this->processMetaData('', $meta_key, $meta_value);
+        if (isset(\FeedParser\FeedParser::$plugins[$meta_key]) && \FeedParser\FeedParser::$plugins[$meta_key] instanceof \FeedParser\Plugin\Plugin) {
+          \FeedParser\FeedParser::$plugins[$meta_key]->processMetaData($this, '', $meta_key, $meta_value);
+          \FeedParser\FeedParser::$plugins[$meta_key]->applyMetaData($this);
+        } else {
+          $this->processMetaData('', $meta_key, $meta_value);
+        }
         unset($meta_key, $meta_value);
       }
     }

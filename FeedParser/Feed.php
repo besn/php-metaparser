@@ -51,7 +51,12 @@ class Feed extends \FeedParser\Base
     if (count($feed->children()) > 0) {
       foreach ($feed->children() as $meta_key => $meta_value) {
         if ($meta_key != $items_key) {
-          $this->processMetaData('', $meta_key, $meta_value);
+          if (isset(\FeedParser\FeedParser::$plugins[$meta_key]) && \FeedParser\FeedParser::$plugins[$meta_key] instanceof \FeedParser\Plugin\Plugin) {
+            \FeedParser\FeedParser::$plugins[$meta_key]->processMetaData($this, '', $meta_key, $meta_value);
+            \FeedParser\FeedParser::$plugins[$meta_key]->applyMetaData($this);
+          } else {
+            $this->processMetaData('', $meta_key, $meta_value);
+          }
         }
       }
     }
