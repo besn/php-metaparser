@@ -20,6 +20,7 @@ class Base
   public $description = null;
   public $author = null;
   public $time = null;
+  public $attachments = array();
 
   /**
    * @param $meta_namespace
