@@ -34,6 +34,7 @@ class FeedParser
     self::$plugins['dc'] = new \FeedParser\Plugin\DC();
     self::$plugins['sy'] = new \FeedParser\Plugin\SY();
     self::$plugins['content'] = new \FeedParser\Plugin\Content();
+    self::$plugins['enclosure'] = new \FeedParser\Plugin\Enclosure();
   }
 
   /**
