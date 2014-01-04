@@ -4,7 +4,7 @@
   "type": "library",
   "license": "proprietary",
   "description": "metaverse PHP FeedParser library",
-  "keywords": ["rss", "atom"],
+  "keywords": ["rss", "atom", "rdf", "feed parser"],
   "authors": [
     {
       "name": "Andi Mery",
