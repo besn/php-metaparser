@@ -20,7 +20,7 @@ class Enclosure extends \FeedParser\Plugin\Plugin
   {
     switch ((string)$meta_key) {
       case 'enclosure':
-        $this->enclosure_id = md5($meta_value->asXML());
+        $this->enclosure_id = sha1((string)$meta_value['url']);
         $this->enclosure['url'] = (string)$meta_value['url'];
         $this->enclosure['length'] = (string)$meta_value['length'];
         $this->enclosure['type'] = (string)$meta_value['type'];
@@ -30,7 +30,7 @@ class Enclosure extends \FeedParser\Plugin\Plugin
 
   public function applyMetaData(\FeedParser\Base $feedbase)
   {
-    $feedbase->attachments[$this->enclosure_id] = $this->enclosure;
+    $feedbase->enclosures[$this->enclosure_id] = $this->enclosure;
   }
 
   public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, $meta_value)

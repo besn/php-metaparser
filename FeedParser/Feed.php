@@ -13,6 +13,7 @@ namespace FeedParser;
  */
 class Feed extends \FeedParser\Base
 {
+  public $language = null;
   public $items = array();
 
   /**
@@ -47,15 +48,20 @@ class Feed extends \FeedParser\Base
         break;
     }
 
+    // initialize the plugins
+    $p = array();
+    foreach (\FeedParser\FeedParser::$plugins as $meta_key => $class_name) {
+      $p[$meta_key] = new $class_name;
+    }
+
     // extract feed data
     if (count($feed->children()) > 0) {
       foreach ($feed->children() as $meta_key => $meta_value) {
         if ($meta_key != $items_key) {
-          if (isset(\FeedParser\FeedParser::$plugins[$meta_key]) && \FeedParser\FeedParser::$plugins[$meta_key] instanceof \FeedParser\Plugin\Plugin) {
-            \FeedParser\FeedParser::$plugins[$meta_key]->processMetaData($this, '', $meta_key, $meta_value);
-            \FeedParser\FeedParser::$plugins[$meta_key]->applyMetaData($this);
+          if (isset($p[$meta_key]) && $p[$meta_key] instanceof \FeedParser\Plugin\Plugin) {
+            $p[$meta_key]->processMetaData($this, '', $meta_key, $meta_value);
           } else {
-            $this->processMetaData('', $meta_key, $meta_value);
+            $p['core']->processMetaData($this, '', $meta_key, $meta_value);
           }
         }
       }
@@ -66,16 +72,20 @@ class Feed extends \FeedParser\Base
 
     // go through the list of used namespaces
     foreach ($namespaces as $ns => $ns_uri) {
-      if (isset(\FeedParser\FeedParser::$plugins[$ns]) && \FeedParser\FeedParser::$plugins[$ns] instanceof \FeedParser\Plugin\Plugin) {
+      if (isset($p[$ns]) && $p[$ns] instanceof \FeedParser\Plugin\Plugin) {
         if (count($feed->children($ns, true)) > 0) {
           foreach ($feed->children($ns, true) as $meta_key => $meta_value) {
-            \FeedParser\FeedParser::$plugins[$ns]->processMetaData($this, $ns, $meta_key, $meta_value);
+            $p[$ns]->processMetaData($this, $ns, $meta_key, $meta_value);
             unset($meta_key, $meta_value);
           }
         }
-        \FeedParser\FeedParser::$plugins[$ns]->applyMetaData($this);
       }
       unset($ns, $ns_uri);
+    }
+
+    // apply the meta data
+    foreach (\FeedParser\FeedParser::$plugins as $meta_key => $class_name) {
+      $p[$meta_key]->applyMetaData($this);
     }
 
     // extract item data

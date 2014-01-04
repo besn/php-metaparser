@@ -30,11 +30,13 @@ class FeedParser
 
   public function __construct()
   {
-    // initialize plugins
-    self::$plugins['dc'] = new \FeedParser\Plugin\DC();
-    self::$plugins['sy'] = new \FeedParser\Plugin\SY();
-    self::$plugins['content'] = new \FeedParser\Plugin\Content();
-    self::$plugins['enclosure'] = new \FeedParser\Plugin\Enclosure();
+    // define the plugins
+    self::$plugins['core'] = 'FeedParser\Plugin\Core';
+    self::$plugins['dc'] = 'FeedParser\Plugin\DC';
+    self::$plugins['sy'] = 'FeedParser\Plugin\SY';
+    self::$plugins['content'] = 'FeedParser\Plugin\Content';
+    self::$plugins['enclosure'] = 'FeedParser\Plugin\Enclosure';
+    self::$plugins['media'] = 'FeedParser\Plugin\Media';
   }
 
   /**
