@@ -24,7 +24,7 @@ class Media extends \FeedParser\Plugin\Plugin
 
   private $media_attachments = array();
 
-  private function processData(\FeedParser\Base $feedbase, $meta_key, $meta_value)
+  private function processData(\FeedParser\Base $feedbase, $meta_key, \SimpleXMLElement $meta_value)
   {
     switch ((string)$meta_key) {
       case 'title':
@@ -58,7 +58,7 @@ class Media extends \FeedParser\Plugin\Plugin
     $feedbase->media['group'] = $this->media_attachments;
   }
 
-  public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, $meta_value)
+  public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, \SimpleXMLElement $meta_value)
   {
     switch ((string)$feedbase->meta_type) {
       case 'item':

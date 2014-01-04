@@ -13,7 +13,7 @@ namespace FeedParser\Plugin;
  */
 class Core extends \FeedParser\Plugin\Plugin
 {
-  public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, $meta_value)
+  public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, \SimpleXMLElement $meta_value)
   {
     switch ((string)$feedbase->meta_type) {
       case 'channel':

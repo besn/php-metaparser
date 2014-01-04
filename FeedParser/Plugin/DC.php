@@ -21,7 +21,7 @@ class DC extends \FeedParser\Plugin\Plugin
   private $title = null;
   private $date = null;
 
-  private function processData(\FeedParser\Base $feedbase, $meta_key, $meta_value)
+  private function processData(\FeedParser\Base $feedbase, $meta_key, \SimpleXMLElement $meta_value)
   {
     switch ((string)$meta_key) {
       case 'creator': // The primary individual responsible for the content of the resource.
@@ -50,7 +50,7 @@ class DC extends \FeedParser\Plugin\Plugin
     }
   }
 
-  public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, $meta_value)
+  public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, \SimpleXMLElement $meta_value)
   {
     switch ((string)$feedbase->meta_type) {
       case 'channel':

@@ -21,7 +21,7 @@ class SY extends \FeedParser\Plugin\Plugin
   private $updateFrequency = 0;
   private $updateBase = null;
 
-  private function processData(\FeedParser\Base $feedbase, $meta_key, $meta_value)
+  private function processData(\FeedParser\Base $feedbase, $meta_key, \SimpleXMLElement $meta_value)
   {
     switch ((string)$meta_key) {
       case 'updatePeriod':
@@ -63,7 +63,7 @@ class SY extends \FeedParser\Plugin\Plugin
     }
   }
 
-  public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, $meta_value)
+  public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, \SimpleXMLElement $meta_value)
   {
     switch ((string)$feedbase->meta_type) {
       case 'channel':
