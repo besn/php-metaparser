@@ -106,12 +106,9 @@ class Core extends \FeedParser\Plugin\Plugin
                 switch (strtolower((string)$meta_key)) {
                   case 'title': // Defines the title of the item (required)
                   case 'link': // Defines the hyperlink to the item (required)
+                  case 'description': // Describes the item (required)
                   case 'author': // Specifies the e-mail address to the author of the item (optional)
                     $feedbase->$meta_key = html_entity_decode((string)$meta_value);
-                    break;
-
-                  case 'description': // Defines the item (required)
-                    $feedbase->description = (string)$meta_value;
                     break;
 
                   case 'pubdate': // Defines the last publication date for the content of the feed (optional)
@@ -132,7 +129,7 @@ class Core extends \FeedParser\Plugin\Plugin
                     break;
 
                   case 'summary': // Defines the item (required)
-                    $feedbase->description = (string)$meta_value;
+                    $feedbase->description = html_entity_decode((string)$meta_value);
                     break;
 
                   case 'link': // Defines the hyperlink to the item (required)
