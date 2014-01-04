@@ -115,6 +115,10 @@ class Core extends \FeedParser\Plugin\Plugin
                     $feedbase->time = new \DateTime((string)$meta_value);
                     $feedbase->time->setTimezone(new \DateTimeZone('UTC'));
                     break;
+
+                  case 'category':
+                    $feedbase->categories[] = (string)$meta_value;
+                    break;
                 }
                 break;
 

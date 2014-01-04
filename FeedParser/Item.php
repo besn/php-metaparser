@@ -13,6 +13,8 @@ namespace FeedParser;
  */
 class Item extends \FeedParser\Base
 {
+  public $categories = array();
+
   /**
    * @param $feed_type
    */
