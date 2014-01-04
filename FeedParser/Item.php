@@ -45,12 +45,14 @@ class Item extends \FeedParser\Base
 
     // go through the list of used namespaces
     foreach ($namespaces as $ns => $ns_uri) {
-      if (isset($p[$ns]) && $p[$ns] instanceof \FeedParser\Plugin\Plugin) {
-        if (count($item->children($ns, true)) > 0) {
-          foreach ($item->children($ns, true) as $meta_key => $meta_value) {
+      if (count($item->children($ns, true)) > 0) {
+        foreach ($item->children($ns, true) as $meta_key => $meta_value) {
+          if (isset($p[$ns]) && $p[$ns] instanceof \FeedParser\Plugin\Plugin) {
             $p[$ns]->processMetaData($this, $ns, $meta_key, $meta_value);
-            unset($meta_key, $meta_value);
+          } else {
+            $p['core']->processMetaData($this, $ns, $meta_key, $meta_value);
           }
+          unset($meta_key, $meta_value);
         }
       }
       unset($ns, $ns_uri);
