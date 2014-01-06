@@ -50,12 +50,20 @@ class Media extends \FeedParser\Plugin\Plugin
   public function applyMetaData(\FeedParser\Base $feedbase)
   {
     if (isset($this->title) && !isset($feedbase->title)) {
-      $feedbase->title = $this->title;
+      $feedbase->media['title'] = $this->title;
     }
-    $feedbase->media['thumbnail'] = $this->thumbnail;
-    $feedbase->media['keywords'] = $this->keywords;
-    $feedbase->media['player'] = $this->player;
-    $feedbase->media['group'] = $this->media_attachments;
+    if (isset($this->thumbnail)) {
+      $feedbase->media['thumbnail'] = $this->thumbnail;
+    }
+    if (isset($this->keywords)) {
+      $feedbase->media['keywords'] = $this->keywords;
+    }
+    if (isset($this->player)) {
+      $feedbase->media['player'] = $this->player;
+    }
+    if (count($this->media_attachments) > 0) {
+      $feedbase->media['group'] = $this->media_attachments;
+    }
   }
 
   public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, \SimpleXMLElement $meta_value)

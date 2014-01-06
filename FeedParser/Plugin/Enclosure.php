@@ -30,7 +30,9 @@ class Enclosure extends \FeedParser\Plugin\Plugin
 
   public function applyMetaData(\FeedParser\Base $feedbase)
   {
-    $feedbase->enclosures[$this->enclosure_id] = $this->enclosure;
+    if (count($this->media_attachments) > 0) {
+      $feedbase->enclosures[$this->enclosure_id] = $this->enclosure;
+    }
   }
 
   public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, \SimpleXMLElement $meta_value)
