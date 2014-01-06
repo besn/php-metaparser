@@ -22,7 +22,6 @@ class Feed extends \FeedParser\Base
   public function __construct(\SimpleXMLElement $x)
   {
     $this->feed_type = $this->getFeedType($x);
-    $this->meta_type = 'channel';
 
     $feed = null;
     $items = null;

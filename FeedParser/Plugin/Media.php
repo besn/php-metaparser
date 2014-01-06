@@ -37,10 +37,10 @@ class Media extends \FeedParser\Plugin\Plugin
         break;
       case 'content':
         $media_content = array();
-        foreach($meta_value->attributes() as $sub_meta_key => $sub_meta_value) {
+        foreach ($meta_value->attributes() as $sub_meta_key => $sub_meta_value) {
           $media_content[$sub_meta_key] = (string)$sub_meta_value;
         }
-        if(isset($media_content['url'])) {
+        if (isset($media_content['url'])) {
           $this->media_attachments[sha1($media_content['url'])] = $media_content;
         }
         break;
@@ -60,26 +60,24 @@ class Media extends \FeedParser\Plugin\Plugin
 
   public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, \SimpleXMLElement $meta_value)
   {
-    switch ((string)$feedbase->meta_type) {
-      case 'item':
-        switch ((string)$meta_namespace) {
-          case 'media':
-            switch ((string)$meta_key) {
-              case 'group':
-                if (count($meta_value->children($meta_namespace, true)) > 0) {
-                  foreach ($meta_value->children($meta_namespace, true) as $sub_meta_key => $sub_meta_value) {
-                    $this->processMetaData($feedbase, $meta_namespace, $sub_meta_key, $sub_meta_value);
-                  }
+    if ($feedbase instanceof \FeedParser\Item) {
+      switch ((string)$meta_namespace) {
+        case 'media':
+          switch ((string)$meta_key) {
+            case 'group':
+              if (count($meta_value->children($meta_namespace, true)) > 0) {
+                foreach ($meta_value->children($meta_namespace, true) as $sub_meta_key => $sub_meta_value) {
+                  $this->processMetaData($feedbase, $meta_namespace, $sub_meta_key, $sub_meta_value);
                 }
-                break;
+              }
+              break;
 
-              default:
-                $this->processData($feedbase, $meta_key, $meta_value);
-                break;
-            }
-            break;
-        }
-        break;
+            default:
+              $this->processData($feedbase, $meta_key, $meta_value);
+              break;
+          }
+          break;
+      }
     }
     unset($meta_namespace, $meta_key, $meta_value);
   }

@@ -18,10 +18,6 @@ class Base
    */
   public $feed_type = null;
   /**
-   * TODO: replace $meta_type with instanceof
-   */
-  public $meta_type = null;
-  /**
    * @var string The title of the feed or item
    */
   public $title = null;

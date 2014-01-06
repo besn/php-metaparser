@@ -21,7 +21,6 @@ class Item extends \FeedParser\Base
   public function __construct($item_type, \SimpleXMLElement $item)
   {
     $this->feed_type = $item_type;
-    $this->meta_type = 'item';
 
     // initialize the plugins
     $p = array();

@@ -40,22 +40,19 @@ class Content extends \FeedParser\Plugin\Plugin
 
   public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, \SimpleXMLElement $meta_value)
   {
-    switch ((string)$feedbase->meta_type) {
-      case 'channel':
-        switch ((string)$meta_namespace) {
-          case 'content':
-            $this->processData($feedbase, $meta_key, $meta_value);
-            break;
-        }
-        break;
-
-      case 'item':
-        switch ((string)$meta_namespace) {
-          case 'content':
-            $this->processData($feedbase, $meta_key, $meta_value);
-            break;
-        }
-        break;
+    if ($feedbase instanceof \FeedParser\Feed) {
+      switch ((string)$meta_namespace) {
+        case 'content':
+          $this->processData($feedbase, $meta_key, $meta_value);
+          break;
+      }
+    }
+    if ($feedbase instanceof \FeedParser\Item) {
+      switch ((string)$meta_namespace) {
+        case 'content':
+          $this->processData($feedbase, $meta_key, $meta_value);
+          break;
+      }
     }
     unset($meta_namespace, $meta_key, $meta_value);
   }

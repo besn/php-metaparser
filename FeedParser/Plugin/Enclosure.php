@@ -35,14 +35,12 @@ class Enclosure extends \FeedParser\Plugin\Plugin
 
   public function processMetaData(\FeedParser\Base $feedbase, $meta_namespace, $meta_key, \SimpleXMLElement $meta_value)
   {
-    switch ((string)$feedbase->meta_type) {
-      case 'item':
-        switch ((string)$meta_key) {
-          case 'enclosure':
-            $this->processData($feedbase, $meta_key, $meta_value);
-            break;
-        }
-        break;
+    if($feedbase instanceof \FeedParser\Item) {
+      switch ((string)$meta_key) {
+        case 'enclosure':
+          $this->processData($feedbase, $meta_key, $meta_value);
+          break;
+      }
     }
     unset($meta_namespace, $meta_key, $meta_value);
   }
