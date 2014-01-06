@@ -17,14 +17,17 @@ class Item extends \FeedParser\Base
    * @var string Enclosed media
    */
   public $enclosures = array();
+
   /**
    * @var string Enclosed media (MediaRSS)
    */
   public $media = array();
+
   /**
    * @var string The time of publication of the item
    */
   public $time = null;
+
   /**
    * @var array The categories (tags) of the item
    */
@@ -79,5 +82,25 @@ class Item extends \FeedParser\Base
     foreach (\FeedParser\FeedParser::$plugins as $meta_key => $class_name) {
       $p[$meta_key]->applyMetaData($this);
     }
+  }
+
+  /**
+   * Returns the time of publication of the item
+   *
+   * @return string
+   */
+  public function getTime()
+  {
+    return $this->time;
+  }
+
+  /**
+   * Returns the ategories (tags) of the item
+   *
+   * @return array
+   */
+  public function getCategories()
+  {
+    return $this->categories;
   }
 }

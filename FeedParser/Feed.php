@@ -17,12 +17,15 @@ class Feed extends \FeedParser\Base
    * @var string The language of the feed
    */
   public $language = null;
+
   /**
    * @var array the feed items
    */
   public $items = array();
 
   /**
+   * Initializes and parses a feed
+   *
    * @param \SimpleXMLElement $x
    */
   public function __construct(\SimpleXMLElement $x)
@@ -130,6 +133,8 @@ class Feed extends \FeedParser\Base
   }
 
   /**
+   * Adds a new \FeedParser\Item to the list of items
+   *
    * @param \FeedParser\Item $item
    */
   public function addItem(\FeedParser\Item $item)
@@ -138,10 +143,22 @@ class Feed extends \FeedParser\Base
   }
 
   /**
+   * Returns the feed items
+   *
    * @return array
    */
   public function getItems()
   {
     return $this->items;
+  }
+
+  /**
+   * Returns the language of the feed
+   *
+   * @return string
+   */
+  public function getLanguage()
+  {
+    return $this->language;
   }
 }
