@@ -22,9 +22,12 @@ class Item extends \FeedParser\Base
    */
   public $media = array();
   /**
-   * @var string The time of publication of the feed or item
+   * @var string The time of publication of the item
    */
   public $time = null;
+  /**
+   * @var array The categories (tags) of the item
+   */
   public $categories = array();
 
   /**
