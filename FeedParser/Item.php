@@ -31,11 +31,14 @@ class Item extends \FeedParser\Base
   public $categories = array();
 
   /**
-   * @param $feed_type
+   * Initializes and parses a feed item
+   *
+   * @param int $feed_type The type of the feed (0: unknown, 1: rdf, 2: rss, 3: atom)
+   * @param \SimpleXMLElement $item The \SimpleXMLElement of the feed item
    */
-  public function __construct($item_type, \SimpleXMLElement $item)
+  public function __construct($feed_type, \SimpleXMLElement $item)
   {
-    $this->feed_type = $item_type;
+    $this->feed_type = $feed_type;
 
     // initialize the plugins
     $p = array();

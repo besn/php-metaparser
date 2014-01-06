@@ -13,7 +13,13 @@ namespace FeedParser;
  */
 class Feed extends \FeedParser\Base
 {
+  /**
+   * @var string The language of the feed
+   */
   public $language = null;
+  /**
+   * @var array the feed items
+   */
   public $items = array();
 
   /**
