@@ -33,8 +33,4 @@ class Base
    * @var string The author of the feed or item
    */
   public $author = null;
-  /**
-   * @var string The time of publication of the feed or item
-   */
-  public $time = null;
 }

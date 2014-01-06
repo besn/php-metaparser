@@ -21,6 +21,10 @@ class Item extends \FeedParser\Base
    * @var string Enclosed media (MediaRSS)
    */
   public $media = array();
+  /**
+   * @var string The time of publication of the feed or item
+   */
+  public $time = null;
   public $categories = array();
 
   /**
