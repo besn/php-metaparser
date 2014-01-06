@@ -37,12 +37,4 @@ class Base
    * @var string The time of publication of the feed or item
    */
   public $time = null;
-  /**
-   * @var string Enclosed media
-   */
-  public $enclosures = array();
-  /**
-   * @var string Enclosed media (MediaRSS)
-   */
-  public $media = array();
 }

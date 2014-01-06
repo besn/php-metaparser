@@ -13,6 +13,14 @@ namespace FeedParser;
  */
 class Item extends \FeedParser\Base
 {
+  /**
+   * @var string Enclosed media
+   */
+  public $enclosures = array();
+  /**
+   * @var string Enclosed media (MediaRSS)
+   */
+  public $media = array();
   public $categories = array();
 
   /**
