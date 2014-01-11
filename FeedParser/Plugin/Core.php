@@ -131,7 +131,7 @@ class Core extends \FeedParser\Plugin\Plugin
                   break;
 
                 case 'link': // Defines the hyperlink to the item (required)
-                  if (isset($meta_value['href'])) {
+                  if (isset($meta_value['rel']) && $meta_value['rel'] == 'alternate' && isset($meta_value['type']) && $meta_value['type'] == 'text/html' && isset($meta_value['href'])) {
                     $feedbase->$meta_key = (string)$meta_value['href'];
                   }
                   break;
