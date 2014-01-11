@@ -16,7 +16,7 @@ class Base
   /**
    * @var int The type of the feed (0: unknown, 1: rdf, 2: rss, 3: atom)
    */
-  public $feed_type = null;
+  private $feed_type = null;
 
   /**
    * @var string The title of the feed or item
