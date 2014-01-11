@@ -31,12 +31,12 @@ class FeedParser
   public function __construct()
   {
     // define the plugins
-    self::$plugins['core'] = 'FeedParser\Plugin\Core';
-    self::$plugins['dc'] = 'FeedParser\Plugin\DC';
-    self::$plugins['sy'] = 'FeedParser\Plugin\SY';
-    self::$plugins['content'] = 'FeedParser\Plugin\Content';
-    self::$plugins['enclosure'] = 'FeedParser\Plugin\Enclosure';
-    self::$plugins['media'] = 'FeedParser\Plugin\Media';
+    if (is_dir(dirname(__FILE__) . '/Plugin/')) {
+      foreach (glob(dirname(__FILE__) . '/Plugin/*.php') as $plugin_file) {
+        $plugin_class = str_replace('.php', '', basename($plugin_file));
+        self::$plugins[strtolower($plugin_class)] = 'FeedParser\Plugin\\' . $plugin_class;
+      }
+    }
   }
 
   /**
