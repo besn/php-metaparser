@@ -87,4 +87,54 @@ class Base
   {
     return $this->link;
   }
+
+  /**
+   * Sets the author of the feed or item
+   *
+   * @param string $author
+   */
+  public function setAuthor($author)
+  {
+    $this->author = $author;
+  }
+
+  /**
+   * Sets the description of the feed or item
+   *
+   * @param string $description
+   */
+  public function setDescription($description)
+  {
+    $this->description = $description;
+  }
+
+  /**
+   * Sets the type of the feed (0: unknown, 1: rdf, 2: rss, 3: atom)
+   *
+   * @param int $feed_type
+   */
+  public function setFeedType($feed_type)
+  {
+    $this->feed_type = $feed_type;
+  }
+
+  /**
+   * Sets the link to the feed or item
+   *
+   * @param string $link
+   */
+  public function setLink($link)
+  {
+    $this->link = $link;
+  }
+
+  /**
+   * Sets the title of the feed or item
+   *
+   * @param string $title
+   */
+  public function setTitle($title)
+  {
+    $this->title = $title;
+  }
 }
