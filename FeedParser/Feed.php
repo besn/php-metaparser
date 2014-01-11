@@ -30,13 +30,13 @@ class Feed extends \FeedParser\Base
    */
   public function __construct(\SimpleXMLElement $x)
   {
-    $this->feed_type = $this->getFeedType($x);
+    $this->setFeedType($this->detectFeedType($x));
 
     $feed = null;
     $items = null;
     $items_key = null;
 
-    switch ($this->feed_type) {
+    switch ($this->getFeedType()) {
       case FEEDPARSER_TYPE_RDF:
         $feed = $x->channel;
         $items = $x->item;
@@ -100,7 +100,7 @@ class Feed extends \FeedParser\Base
 
     // extract item data
     foreach ($items as $i) {
-      $this->addItem(new \FeedParser\Item($this->feed_type, $i));
+      $this->addItem(new \FeedParser\Item($this->getFeedType(), $i));
     }
 
     unset($feed, $items, $items_key);
@@ -111,7 +111,7 @@ class Feed extends \FeedParser\Base
    *
    * @param \SimpleXMLElement $x
    */
-  public function getFeedType(\SimpleXMLElement $x)
+  public function detectFeedType(\SimpleXMLElement $x)
   {
     switch (strtolower($x->getName())) {
       case 'rdf':

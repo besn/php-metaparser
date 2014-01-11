@@ -41,7 +41,7 @@ class Item extends \FeedParser\Base
    */
   public function __construct($feed_type, \SimpleXMLElement $item)
   {
-    $this->feed_type = $feed_type;
+    $this->setFeedType($feed_type);
 
     // initialize the plugins
     $p = array();

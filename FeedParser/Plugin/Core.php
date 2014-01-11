@@ -18,7 +18,7 @@ class Core extends \FeedParser\Plugin\Plugin
     if ($feedbase instanceof \FeedParser\Feed) {
       switch ((string)$meta_namespace) {
         case '':
-          switch ($feedbase->feed_type) {
+          switch ($feedbase->getFeedType()) {
             case FEEDPARSER_TYPE_RDF:
               switch (strtolower((string)$meta_key)) {
                 case 'title': // Defines the title of the channel (required)
@@ -89,7 +89,7 @@ class Core extends \FeedParser\Plugin\Plugin
     if ($feedbase instanceof \FeedParser\Item) {
       switch ((string)$meta_namespace) {
         case '':
-          switch ($feedbase->feed_type) {
+          switch ($feedbase->getFeedType()) {
             case FEEDPARSER_TYPE_RDF:
               switch (strtolower((string)$meta_key)) {
                 case 'title': // Defines the title of the item (required)
