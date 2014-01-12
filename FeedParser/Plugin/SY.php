@@ -58,8 +58,10 @@ class SY extends \FeedParser\Plugin\Plugin
 
   public function applyMetaData(\FeedParser\Base $feedbase)
   {
-    if (isset($this->updatePeriod) && $this->updatePeriod > 0 && isset($this->updateFrequency) && $this->updateFrequency > 0) {
-      $feedbase->updateFrequency = abs($this->updateFrequency * $this->updatePeriod);
+    if ($feedbase instanceof \FeedParser\Feed) {
+      if (isset($this->updatePeriod) && $this->updatePeriod > 0 && isset($this->updateFrequency) && $this->updateFrequency > 0) {
+        $feedbase->setUpdateFrequency(abs($this->updateFrequency * $this->updatePeriod));
+      }
     }
   }
 

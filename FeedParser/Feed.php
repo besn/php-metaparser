@@ -24,6 +24,34 @@ class Feed extends \FeedParser\Base
   public $items = array();
 
   /**
+   * @var int the update frequency
+   */
+  public $updateFrequency = -1;
+
+  /**
+   * Sets the update frequency
+   *
+   * @param int $updateFrequency
+   */
+  public function setUpdateFrequency($updateFrequency)
+  {
+    if(!is_numeric($updateFrequency) || $updateFrequency <= 0) {
+      throw new Exception('invalid update frequency');
+    }
+    $this->updateFrequency = $updateFrequency;
+  }
+
+  /**
+   * Returns the update frequency
+   *
+   * @return int
+   */
+  public function getUpdateFrequency()
+  {
+    return $this->updateFrequency;
+  }
+
+  /**
    * Initializes and parses a feed
    *
    * @param \SimpleXMLElement $x
