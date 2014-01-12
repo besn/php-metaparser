@@ -103,4 +103,24 @@ class Item extends \FeedParser\Base
   {
     return $this->categories;
   }
+
+  /**
+   * Sets the time of publication of the item
+   *
+   * @param string $time
+   */
+  public function setTime($time)
+  {
+    $this->time = $time;
+  }
+
+  /**
+   * Adds an item category
+   *
+   * @param array $categories
+   */
+  public function addCategory($category)
+  {
+    $this->categories[] = $category;
+  }
 }
