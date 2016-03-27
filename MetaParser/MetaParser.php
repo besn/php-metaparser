@@ -1,11 +1,5 @@
 <?php
 
-/**
- * projectname: metaverse/metaparser
- *
- * @package metaverse/metaparser
- */
-
 namespace MetaParser;
 
 use DOMDocument;

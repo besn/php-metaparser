@@ -1,12 +1,8 @@
 <?php
 
 /**
- * projectname: metaverse/metaparser
- *
- * @package metaverse/metaparser
  * @param $className
  */
-
 function __autoload($className)
 {
   $className = ltrim($className, '\\');

@@ -1,9 +1,9 @@
 {
-  "name": "metaverse/metaparser",
+  "name": "besn/metaparser",
   "version": "0.1",
   "type": "library",
   "license": "BSD-3-Clause",
-  "description": "metaverse PHP HTML metadata parser library",
+  "description": "A generic PHP HTML metadata parser library",
   "keywords": ["html", "head", "meta", "data", "parser"],
   "authors": [
     {
