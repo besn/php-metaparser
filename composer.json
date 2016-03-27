@@ -1,10 +1,10 @@
 {
-  "name": "metaverse/feedparser",
-  "version": "0.2",
+  "name": "metaverse/metaparser",
+  "version": "0.1",
   "type": "library",
-  "license": "proprietary",
-  "description": "metaverse PHP FeedParser library",
-  "keywords": ["rss", "atom", "rdf", "feed parser"],
+  "license": "BSD-3-Clause",
+  "description": "metaverse PHP HTML metadata parser library",
+  "keywords": ["html", "head", "meta", "data", "parser"],
   "authors": [
     {
       "name": "Andi Mery",
@@ -16,17 +16,14 @@
   },
   "autoload": {
     "classmap": [
-      "FeedParser/FeedParser.php",
-      "FeedParser/Plugin/Core.php",
-      "FeedParser/Plugin/Content.php",
-      "FeedParser/Plugin/Plugin.php",
-      "FeedParser/Plugin/DC.php",
-      "FeedParser/Plugin/SY.php",
-      "FeedParser/Plugin/Enclosure.php",
-      "FeedParser/Plugin/Media.php",
-      "FeedParser/Base.php",
-      "FeedParser/Feed.php",
-      "FeedParser/Item.php"
+      "MetaParser/Plugin/Core.php",
+      "MetaParser/Plugin/DC.php",
+      "MetaParser/Plugin/Google.php",
+      "MetaParser/Plugin/OpenGraph.php",
+      "MetaParser/Plugin/Plugin.php",
+      "MetaParser/Plugin/Twitter.php",
+      "MetaParser/Meta.php",
+      "MetaParser/MetaParser.php"
     ]
   }
 }
